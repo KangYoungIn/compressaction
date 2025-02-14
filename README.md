@@ -35,6 +35,150 @@
 ```
 ---
 
+### **압축 (Compression)**
+**단일 폴더 압축 (`ZIP`)**
+```yaml
+- name: Compress a single folder (ZIP)
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "compress"
+    format: "zip"
+    source: "test-data"
+    destination: "test-data.zip"
+```
+
+**다중 폴더 압축 (`ZIP`)**
+```yaml
+- name: Compress multiple folders (ZIP)
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "compress"
+    format: "zip"
+    source: "folder1,folder2"
+    destination: "multi-folder.zip"
+```
+
+**단일 파일 압축 (`ZIP`)**
+```yaml
+- name: Compress a single file (ZIP)
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "compress"
+    format: "zip"
+    source: "test.txt"
+    destination: "test.zip"
+```
+
+**다중 파일 압축 (`ZIP`)**
+```yaml
+- name: Compress multiple files (ZIP)
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "compress"
+    format: "zip"
+    source: "file1.txt,file2.txt"
+    destination: "multi-files.zip"
+```
+
+**단일 폴더 압축 (`TAR.GZ`)**
+```yaml
+- name: Compress a single folder (TAR.GZ)
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "compress"
+    format: "tar.gz"
+    source: "test-data"
+    destination: "test-data.tar.gz"
+```
+
+**다중 폴더 압축 (`TAR.GZ`)**
+```yaml
+- name: Compress multiple folders (TAR.GZ)
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "compress"
+    format: "tar.gz"
+    source: "folder1,folder2"
+    destination: "multi-folder.tar.gz"
+```
+
+**단일 파일 압축 (`TAR.GZ`)**
+```yaml
+- name: Compress a single file (TAR.GZ)
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "compress"
+    format: "tar.gz"
+    source: "test.txt"
+    destination: "test.tar.gz"
+```
+
+**다중 파일 압축 (`TAR.GZ`)**
+```yaml
+- name: Compress multiple files (TAR.GZ)
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "compress"
+    format: "tar.gz"
+    source: "file1.txt,file2.txt"
+    destination: "multi-files.tar.gz"
+```
+
+---
+
+###**압축 해제 (Decompression)**
+**ZIP 파일 압축 해제**
+```yaml
+- name: Decompress ZIP
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "decompress"
+    format: "zip"
+    source: "test-data.zip"
+    destination: "test-output-zip"
+```
+
+**TAR 파일 압축 해제**
+```yaml
+- name: Decompress TAR
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "decompress"
+    format: "tar"
+    source: "test-data.tar"
+    destination: "test-output-tar"
+```
+
+**TAR.GZ 파일 압축 해제**
+```yaml
+- name: Decompress TAR.GZ
+  uses: KangYoungIn/compressaction@v1
+  with:
+    action: "decompress"
+    format: "tar.gz"
+    source: "test-data.tar.gz"
+    destination: "test-output-tar-gz"
+```
+
+---
+
+### **최종 정리**
+| **사용 예시** | **설정 방법** |
+|--------------|--------------|
+| **단일 폴더 압축 (ZIP)** | `source: "test-data", destination: "test-data.zip"` |
+| **다중 폴더 압축 (ZIP)** | `source: "folder1,folder2", destination: "multi-folder.zip"` |
+| **단일 파일 압축 (ZIP)** | `source: "test.txt", destination: "test.zip"` |
+| **다중 파일 압축 (ZIP)** | `source: "file1.txt,file2.txt", destination: "multi-files.zip"` |
+| **단일 폴더 압축 (TAR.GZ)** | `source: "test-data", destination: "test-data.tar.gz"` |
+| **다중 폴더 압축 (TAR.GZ)** | `source: "folder1,folder2", destination: "multi-folder.tar.gz"` |
+| **단일 파일 압축 (TAR.GZ)** | `source: "test.txt", destination: "test.tar.gz"` |
+| **다중 파일 압축 (TAR.GZ)** | `source: "file1.txt,file2.txt", destination: "multi-files.tar.gz"` |
+| **ZIP 압축 해제** | `source: "test-data.zip", destination: "test-output-zip"` |
+| **TAR 압축 해제** | `source: "test-data.tar", destination: "test-output-tar"` |
+| **TAR.GZ 압축 해제** | `source: "test-data.tar.gz", destination: "test-output-tar-gz"` |
+
+---
+
 ## **오픈소스 라이브러리**
 이 프로젝트는 다음 오픈소스를 사용합니다.
 
