@@ -12,7 +12,6 @@ import * as tar from "tar-stream";
  */
 export async function compress(source: string | string[], destination: string, format: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    // source가 단일 문자열이면 배열로 변환
     const sources = Array.isArray(source) ? source : [source];
 
     // 모든 소스가 존재하는지 확인
@@ -42,13 +41,17 @@ export async function compress(source: string | string[], destination: string, f
 
       archive.pipe(output);
 
-      // 다중 파일/폴더 지원
+      // ✅ 상위 폴더 없이 개별 파일 직접 추가
       for (const src of sources) {
         const srcStat = fs.statSync(src);
         if (srcStat.isDirectory()) {
-          archive.directory(src, path.basename(src)); // 폴더 추가
+          fs.readdirSync(src).forEach((file) => {
+            const fullPath = path.join(src, file);
+            const relativePath = path.relative(src, fullPath);
+            archive.file(fullPath, { name: relativePath });
+          });
         } else {
-          archive.file(src, { name: path.basename(src) }); // 개별 파일 추가
+          archive.file(src, { name: path.basename(src) });
         }
       }
 
@@ -69,10 +72,18 @@ export async function compress(source: string | string[], destination: string, f
         }
       };
 
-      // 다중 파일/폴더 지원
+      // 상위 폴더 없이 개별 파일 직접 추가
       for (const src of sources) {
-        const baseName = path.basename(src);
-        addToArchive(src, baseName);
+        const srcStat = fs.statSync(src);
+        if (srcStat.isDirectory()) {
+          fs.readdirSync(src).forEach((file) => {
+            const fullPath = path.join(src, file);
+            const relativePath = path.relative(src, fullPath);
+            addToArchive(fullPath, relativePath);
+          });
+        } else {
+          addToArchive(src, path.basename(src));
+        }
       }
 
       pack.finalize();
