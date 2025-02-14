@@ -38,9 +38,9 @@ jobs:
           echo "Single file content" > test-single/single.txt
           ls -R test-data test-single
 
-      # 압축 테스트 (KangYoungIn/compressaction@v1 사용)
+      # 압축 테스트 (KangYoungIn/file-compression-extraction@v1.0.0 사용)
       - name: Compress test folder (zip)
-        uses: KangYoungIn/file-compression-extraction@v1
+        uses: KangYoungIn/file-compression-extraction@v1.0.0
         with:
           action: "compress"
           format: "zip"
@@ -48,7 +48,7 @@ jobs:
           destination: "./test-data.zip"
 
       - name: Compress a single folder (ZIP)
-        uses: KangYoungIn/file-compression-extraction@v1
+        uses: KangYoungIn/file-compression-extraction@v1.0.0
         with:
           action: "compress"
           format: "zip"
@@ -56,7 +56,7 @@ jobs:
           destination: "test-single.zip"
 
       - name: Compress multiple files (ZIP)
-        uses: KangYoungIn/file-compression-extraction@v1
+        uses: KangYoungIn/file-compression-extraction@v1.0.0
         with:
           action: "compress"
           format: "zip"
@@ -64,7 +64,7 @@ jobs:
           destination: "test-multi.zip"
 
       - name: Compress test folder (tar)
-        uses: KangYoungIn/file-compression-extraction@v1
+        uses: KangYoungIn/file-compression-extraction@v1.0.0
         with:
           action: "compress"
           format: "tar"
@@ -72,7 +72,7 @@ jobs:
           destination: "./test-data.tar"
 
       - name: Compress test folder (tar.gz)
-        uses: KangYoungIn/file-compression-extraction@v1
+        uses: KangYoungIn/file-compression-extraction@v1.0.0
         with:
           action: "compress"
           format: "tar.gz"
@@ -85,7 +85,7 @@ jobs:
           
       # 압축 해제 테스트
       - name: Decompress test archive (zip)
-        uses: KangYoungIn/file-compression-extraction@v1
+        uses: KangYoungIn/file-compression-extraction@v1.0.0
         with:
           action: "decompress"
           format: "zip"
@@ -93,7 +93,7 @@ jobs:
           destination: "./test-output-zip"
 
       - name: Decompress test archive (tar)
-        uses: KangYoungIn/file-compression-extraction@v1
+        uses: KangYoungIn/file-compression-extraction@v1.0.0
         with:
           action: "decompress"
           format: "tar"
@@ -101,7 +101,7 @@ jobs:
           destination: "./test-output-tar"
 
       - name: Decompress test archive (tar.gz)
-        uses: KangYoungIn/file-compression-extraction@v1
+        uses: KangYoungIn/file-compression-extraction@v1.0.0
         with:
           action: "decompress"
           format: "tar.gz"
