@@ -1,6 +1,7 @@
 ## **File Compression & Extraction**  
 
 **File Compression & Extraction**은 GitHub Actions에서 파일과 폴더를 `zip`, `tar`, `tar.gz` 형식으로 압축 및 해제할 수 있도록 도와주는 플러그인입니다.  
+이 플러그인은 **빌드 에이전트 환경에 `tar`, `zip` 등의 툴이 설치되어 있지 않아도** 내장된 라이브러리를 사용하여 압축 및 해제 작업을 수행합니다.  
 
 ---
 
@@ -144,6 +145,7 @@
 # **File Compression & Extraction**  
 
 **File Compression & Extraction** is a GitHub Actions plugin that allows you to compress and extract files and folders in `zip`, `tar`, and `tar.gz` formats.
+Unlike other solutions, this action **does not require tools like `tar` or `zip` to be installed on the build agent**. Instead, it utilizes built-in Node.js libraries to handle compression and extraction.
 
 ---
 
