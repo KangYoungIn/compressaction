@@ -20,5 +20,5 @@ runs:
   main: "dist/index.js"
 
 branding:
-  icon: "archive"
+  icon: "git-commit"
   color: "blue"
