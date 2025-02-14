@@ -49,7 +49,7 @@ jobs:
         with:
           action: "compress"
           format: "zip"
-          source: "test-single"
+          source: "test-single/single.txt"
           destination: "test-single.zip"
 
       - name: Compress multiple files (ZIP)
