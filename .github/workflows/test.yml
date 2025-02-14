@@ -29,14 +29,15 @@ jobs:
       # 테스트용 데이터 생성
       - name: Create test data
         run: |
-          mkdir -p test-data
+          mkdir -p test-data test-single
           echo "Hello, this is a test file!" > test-data/test.txt
           echo "Another test file." > test-data/sample.log
-          ls -R test-data
+          echo "Single file content" > test-single/single.txt
+          ls -R test-data test-single
 
-      # 압축 테스트
+      # 압축 테스트 (KangYoungIn/compressaction@v1 사용)
       - name: Compress test folder (zip)
-        uses: ./
+        uses: KangYoungIn/compressaction@v1
         with:
           action: "compress"
           format: "zip"
@@ -44,7 +45,7 @@ jobs:
           destination: "./test-data.zip"
 
       - name: Compress a single folder (ZIP)
-        uses: ./
+        uses: KangYoungIn/compressaction@v1
         with:
           action: "compress"
           format: "zip"
@@ -52,7 +53,7 @@ jobs:
           destination: "test-single.zip"
 
       - name: Compress multiple files (ZIP)
-        uses: ./
+        uses: KangYoungIn/compressaction@v1
         with:
           action: "compress"
           format: "zip"
@@ -60,7 +61,7 @@ jobs:
           destination: "test-multi.zip"
 
       - name: Compress test folder (tar)
-        uses: ./
+        uses: KangYoungIn/compressaction@v1
         with:
           action: "compress"
           format: "tar"
@@ -68,7 +69,7 @@ jobs:
           destination: "./test-data.tar"
 
       - name: Compress test folder (tar.gz)
-        uses: ./
+        uses: KangYoungIn/compressaction@v1
         with:
           action: "compress"
           format: "tar.gz"
@@ -81,7 +82,7 @@ jobs:
           
       # 압축 해제 테스트
       - name: Decompress test archive (zip)
-        uses: ./
+        uses: KangYoungIn/compressaction@v1
         with:
           action: "decompress"
           format: "zip"
@@ -89,7 +90,7 @@ jobs:
           destination: "./test-output-zip"
 
       - name: Decompress test archive (tar)
-        uses: ./
+        uses: KangYoungIn/compressaction@v1
         with:
           action: "decompress"
           format: "tar"
@@ -97,7 +98,7 @@ jobs:
           destination: "./test-output-tar"
 
       - name: Decompress test archive (tar.gz)
-        uses: ./
+        uses: KangYoungIn/compressaction@v1
         with:
           action: "decompress"
           format: "tar.gz"
