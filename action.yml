@@ -1,4 +1,4 @@
-name: "Compress Action"
+name: "File Compression & Extraction"
 description: "A GitHub Action to compress or decompress files"
 author: "YoungIn Kang"
 inputs:

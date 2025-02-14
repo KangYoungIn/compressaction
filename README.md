@@ -1,8 +1,8 @@
-# CompressAction
+# File Compression & Extraction
 
 ![GitHub Action](https://img.shields.io/badge/GitHub%20Action-Compression-blue?style=flat-square)
 
-**CompressAction**은 파일 및 폴더를 `zip`, `tar`, `tar.gz` 형식으로 압축 및 해제할 수 있는 GitHub Action 플러그인입니다.
+**File Compression & Extraction**은 파일 및 폴더를 `zip`, `tar`, `tar.gz` 형식으로 압축 및 해제할 수 있는 GitHub Action 플러그인입니다.
 
 ---
 
