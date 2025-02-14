@@ -1,4 +1,4 @@
-## **파일 압축 및 추출 (File Compression & Extraction)**  
+## **File Compression & Extraction**  
 
 **File Compression & Extraction**은 GitHub Actions에서 파일과 폴더를 `zip`, `tar`, `tar.gz` 형식으로 압축 및 해제할 수 있도록 도와주는 플러그인입니다.  
 
