@@ -26,7 +26,7 @@
 
 ```yaml
 - name: Compress multiple files
-  uses: ./
+  uses: KangYoungIn/compressaction@v1
   with:
     action: "compress"
     format: "zip"
