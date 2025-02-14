@@ -1,0 +1,118 @@
+name: Test Compression Action
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # 저장소 체크아웃
+      - uses: actions/checkout@v3
+
+      # Node.js 설정
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 의존성 설치
+      - name: Install dependencies
+        run: npm install
+
+      # TypeScript 빌드
+      - name: Build project
+        run: npm run build
+
+      # Jest 테스트 실행
+      - name: Run tests
+        run: npm test
+
+      # 테스트용 데이터 생성
+      - name: Create test data
+        run: |
+          mkdir -p test-data
+          echo "Hello, this is a test file!" > test-data/test.txt
+          echo "Another test file." > test-data/sample.log
+          ls -R test-data
+
+      # 압축 테스트
+      - name: Compress test folder (zip)
+        uses: ./
+        with:
+          action: "compress"
+          format: "zip"
+          source: "./test-data"
+          destination: "./test-data.zip"
+
+      - name: Compress a single folder (ZIP)
+        uses: ./
+        with:
+          action: "compress"
+          format: "zip"
+          source: "test-single"
+          destination: "test-single.zip"
+
+      - name: Compress multiple files (ZIP)
+        uses: ./
+        with:
+          action: "compress"
+          format: "zip"
+          source: "test-data/test.txt,test-data/sample.log"
+          destination: "test-multi.zip"
+
+      - name: Compress test folder (tar)
+        uses: ./
+        with:
+          action: "compress"
+          format: "tar"
+          source: "./test-data"
+          destination: "./test-data.tar"
+
+      - name: Compress test folder (tar.gz)
+        uses: ./
+        with:
+          action: "compress"
+          format: "tar.gz"
+          source: "./test-data"
+          destination: "./test-data.tar.gz"
+
+      - name: Verify compressed files
+        run: |
+          ls -al
+          
+      # 압축 해제 테스트
+      - name: Decompress test archive (zip)
+        uses: ./
+        with:
+          action: "decompress"
+          format: "zip"
+          source: "./test-data.zip"
+          destination: "./test-output-zip"
+
+      - name: Decompress test archive (tar)
+        uses: ./
+        with:
+          action: "decompress"
+          format: "tar"
+          source: "./test-data.tar"
+          destination: "./test-output-tar"
+
+      - name: Decompress test archive (tar.gz)
+        uses: ./
+        with:
+          action: "decompress"
+          format: "tar.gz"
+          source: "./test-data.tar.gz"
+          destination: "./test-output-tar-gz"
+
+      # 압축 해제 후 모든 파일이 정상적으로 복원되었는지 확인
+      - name: Verify decompressed files
+        run: |
+          for folder in test-output-zip test-output-tar test-output-tar-gz; do
+            echo "Checking files in $folder..."
+            ls -R "$folder" || echo "⚠️ $folder does not exist!"
+            if [ -f "./$folder/test.txt" ] && [ -f "./$folder/sample.log" ]; then
+              echo "✅ $folder decompression successful!"
+            else
+              echo "❌ $folder decompression failed!" && exit 1
+            fi
+          done

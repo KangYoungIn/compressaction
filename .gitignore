@@ -1,0 +1,31 @@
+# Node.js 관련 파일
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+
+# 빌드 결과물 (TypeScript -> JavaScript)
+dist/
+*.tsbuildinfo
+
+# 환경 설정 파일 (환경별로 다를 수 있음)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE 및 에디터 설정 파일
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*.swn
+
+# 테스트 및 로그 파일
+coverage/
+*.log
+jest/
+__tests__/tmp/

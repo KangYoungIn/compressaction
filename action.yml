@@ -1,0 +1,20 @@
+name: "Compress Action"
+description: "Compress or decompress files using zip, tar, and tar.gz formats"
+author: "YoungIn Kang"
+inputs:
+  action:
+    description: "The action to perform (compress or decompress)"
+    required: true
+  format:
+    description: "Compression format (zip, tar, tar.gz)"
+    required: true
+  source:
+    description: "Source files or directories (comma-separated for multiple files)"
+    required: true
+  destination:
+    description: "Destination file or directory"
+    required: true
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
