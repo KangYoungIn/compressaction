@@ -1,5 +1,8 @@
 name: Test Compression Action
-on: push
+on:
+  push:
+    paths-ignore:
+      - "README.md"
 
 jobs:
   test:

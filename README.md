@@ -1,15 +1,14 @@
-# File Compression & Extraction
+## **파일 압축 및 추출 (File Compression & Extraction)**  
 
-![GitHub Action](https://img.shields.io/badge/GitHub%20Action-Compression-blue?style=flat-square)
-
-**File Compression & Extraction**은 파일 및 폴더를 `zip`, `tar`, `tar.gz` 형식으로 압축 및 해제할 수 있는 GitHub Action 플러그인입니다.
+**File Compression & Extraction**은 GitHub Actions에서 파일과 폴더를 `zip`, `tar`, `tar.gz` 형식으로 압축 및 해제할 수 있도록 도와주는 플러그인입니다.  
 
 ---
 
 ## **기능**
- - `zip`, `tar`, `tar.gz` 포맷 지원  
- - 다중 파일 및 폴더 압축 가능  
- - GitHub Actions에서 직접 실행 가능  
+- `zip`, `tar`, `tar.gz` 포맷 지원  
+- 단일/다중 파일 및 폴더 압축 가능  
+- GitHub Actions에서 직접 실행 가능  
+- 압축 해제 후 원본 디렉토리 구조 유지  
 
 ---
 
@@ -26,20 +25,21 @@
 
 ```yaml
 - name: Compress multiple files
-  uses: KangYoungIn/compressaction@v1
+  uses: KangYoungIn/file-compression-extraction@v1
   with:
     action: "compress"
     format: "zip"
     source: "file1.txt,file2.txt,folder"
     destination: "archive.zip"
 ```
+
 ---
 
-### **압축 (Compression)**
-**단일 폴더 압축 (`ZIP`)**
+### **압축 (Compression)**  
+#### **단일 폴더 압축 (`ZIP`)**
 ```yaml
 - name: Compress a single folder (ZIP)
-  uses: KangYoungIn/compressaction@v1
+  uses: KangYoungIn/file-compression-extraction@v1
   with:
     action: "compress"
     format: "zip"
@@ -47,10 +47,10 @@
     destination: "test-data.zip"
 ```
 
-**다중 폴더 압축 (`ZIP`)**
+#### **다중 폴더 압축 (`ZIP`)**
 ```yaml
 - name: Compress multiple folders (ZIP)
-  uses: KangYoungIn/compressaction@v1
+  uses: KangYoungIn/file-compression-extraction@v1
   with:
     action: "compress"
     format: "zip"
@@ -58,10 +58,10 @@
     destination: "multi-folder.zip"
 ```
 
-**단일 파일 압축 (`ZIP`)**
+#### **단일 파일 압축 (`ZIP`)**
 ```yaml
 - name: Compress a single file (ZIP)
-  uses: KangYoungIn/compressaction@v1
+  uses: KangYoungIn/file-compression-extraction@v1
   with:
     action: "compress"
     format: "zip"
@@ -69,10 +69,10 @@
     destination: "test.zip"
 ```
 
-**다중 파일 압축 (`ZIP`)**
+#### **다중 파일 압축 (`ZIP`)**
 ```yaml
 - name: Compress multiple files (ZIP)
-  uses: KangYoungIn/compressaction@v1
+  uses: KangYoungIn/file-compression-extraction@v1
   with:
     action: "compress"
     format: "zip"
@@ -80,10 +80,10 @@
     destination: "multi-files.zip"
 ```
 
-**단일 폴더 압축 (`TAR.GZ`)**
+#### **단일 폴더 압축 (`TAR.GZ`)**
 ```yaml
 - name: Compress a single folder (TAR.GZ)
-  uses: KangYoungIn/compressaction@v1
+  uses: KangYoungIn/file-compression-extraction@v1
   with:
     action: "compress"
     format: "tar.gz"
@@ -91,10 +91,10 @@
     destination: "test-data.tar.gz"
 ```
 
-**다중 폴더 압축 (`TAR.GZ`)**
+#### **다중 폴더 압축 (`TAR.GZ`)**
 ```yaml
 - name: Compress multiple folders (TAR.GZ)
-  uses: KangYoungIn/compressaction@v1
+  uses: KangYoungIn/file-compression-extraction@v1
   with:
     action: "compress"
     format: "tar.gz"
@@ -102,35 +102,13 @@
     destination: "multi-folder.tar.gz"
 ```
 
-**단일 파일 압축 (`TAR.GZ`)**
-```yaml
-- name: Compress a single file (TAR.GZ)
-  uses: KangYoungIn/compressaction@v1
-  with:
-    action: "compress"
-    format: "tar.gz"
-    source: "test.txt"
-    destination: "test.tar.gz"
-```
-
-**다중 파일 압축 (`TAR.GZ`)**
-```yaml
-- name: Compress multiple files (TAR.GZ)
-  uses: KangYoungIn/compressaction@v1
-  with:
-    action: "compress"
-    format: "tar.gz"
-    source: "file1.txt,file2.txt"
-    destination: "multi-files.tar.gz"
-```
-
 ---
 
-###**압축 해제 (Decompression)**
-**ZIP 파일 압축 해제**
+### **압축 해제 (Decompression)**  
+#### **ZIP 파일 압축 해제**
 ```yaml
 - name: Decompress ZIP
-  uses: KangYoungIn/compressaction@v1
+  uses: KangYoungIn/file-compression-extraction@v1
   with:
     action: "decompress"
     format: "zip"
@@ -138,44 +116,16 @@
     destination: "test-output-zip"
 ```
 
-**TAR 파일 압축 해제**
-```yaml
-- name: Decompress TAR
-  uses: KangYoungIn/compressaction@v1
-  with:
-    action: "decompress"
-    format: "tar"
-    source: "test-data.tar"
-    destination: "test-output-tar"
-```
-
-**TAR.GZ 파일 압축 해제**
+#### **TAR.GZ 파일 압축 해제**
 ```yaml
 - name: Decompress TAR.GZ
-  uses: KangYoungIn/compressaction@v1
+  uses: KangYoungIn/file-compression-extraction@v1
   with:
     action: "decompress"
     format: "tar.gz"
     source: "test-data.tar.gz"
     destination: "test-output-tar-gz"
 ```
-
----
-
-### **최종 정리**
-| **사용 예시** | **설정 방법** |
-|--------------|--------------|
-| **단일 폴더 압축 (ZIP)** | `source: "test-data", destination: "test-data.zip"` |
-| **다중 폴더 압축 (ZIP)** | `source: "folder1,folder2", destination: "multi-folder.zip"` |
-| **단일 파일 압축 (ZIP)** | `source: "test.txt", destination: "test.zip"` |
-| **다중 파일 압축 (ZIP)** | `source: "file1.txt,file2.txt", destination: "multi-files.zip"` |
-| **단일 폴더 압축 (TAR.GZ)** | `source: "test-data", destination: "test-data.tar.gz"` |
-| **다중 폴더 압축 (TAR.GZ)** | `source: "folder1,folder2", destination: "multi-folder.tar.gz"` |
-| **단일 파일 압축 (TAR.GZ)** | `source: "test.txt", destination: "test.tar.gz"` |
-| **다중 파일 압축 (TAR.GZ)** | `source: "file1.txt,file2.txt", destination: "multi-files.tar.gz"` |
-| **ZIP 압축 해제** | `source: "test-data.zip", destination: "test-output-zip"` |
-| **TAR 압축 해제** | `source: "test-data.tar", destination: "test-output-tar"` |
-| **TAR.GZ 압축 해제** | `source: "test-data.tar.gz", destination: "test-output-tar-gz"` |
 
 ---
 
@@ -188,3 +138,112 @@
 | [unzipper](https://www.npmjs.com/package/unzipper) | `^0.12.3` | MIT | ZIP 압축 해제 |
 | [tar-stream](https://www.npmjs.com/package/tar-stream) | `^3.1.3` | MIT | TAR 압축 및 해제 |
 | [@actions/core](https://www.npmjs.com/package/@actions/core) | `^1.11.1` | MIT | GitHub Actions 지원 |
+
+---
+
+# **File Compression & Extraction**  
+
+**File Compression & Extraction** is a GitHub Actions plugin that allows you to compress and extract files and folders in `zip`, `tar`, and `tar.gz` formats.
+
+---
+
+## **Features**
+- Supports `zip`, `tar`, and `tar.gz` formats  
+- Compresses single/multiple files & folders  
+- Runs directly within GitHub Actions  
+- Preserves original directory structure after extraction  
+
+---
+
+## **Usage**
+
+### **Input Parameters**
+| Option       | Required | Description |
+|-------------|----------|--------------------------------|
+| `action`     | ✅       | `"compress"` or `"decompress"` |
+| `format`     | ✅       | Choose `"zip"`, `"tar"`, or `"tar.gz"` |
+| `source`     | ✅       | Files/folders to compress (comma-separated) |
+| `destination`| ✅       | Destination file or directory |
+
+```yaml
+- name: Compress multiple files
+  uses: KangYoungIn/file-compression-extraction@v1
+  with:
+    action: "compress"
+    format: "zip"
+    source: "file1.txt,file2.txt,folder"
+    destination: "archive.zip"
+```
+
+---
+
+### **Compression**  
+#### **Compress a Single Folder (`ZIP`)**
+```yaml
+- name: Compress a single folder (ZIP)
+  uses: KangYoungIn/file-compression-extraction@v1
+  with:
+    action: "compress"
+    format: "zip"
+    source: "test-data"
+    destination: "test-data.zip"
+```
+
+#### **Compress Multiple Folders (`ZIP`)**
+```yaml
+- name: Compress multiple folders (ZIP)
+  uses: KangYoungIn/file-compression-extraction@v1
+  with:
+    action: "compress"
+    format: "zip"
+    source: "folder1,folder2"
+    destination: "multi-folder.zip"
+```
+
+#### **Compress a Single File (`ZIP`)**
+```yaml
+- name: Compress a single file (ZIP)
+  uses: KangYoungIn/file-compression-extraction@v1
+  with:
+    action: "compress"
+    format: "zip"
+    source: "test.txt"
+    destination: "test.zip"
+```
+
+---
+
+### **Decompression**  
+#### **Extract ZIP File**
+```yaml
+- name: Decompress ZIP
+  uses: KangYoungIn/file-compression-extraction@v1
+  with:
+    action: "decompress"
+    format: "zip"
+    source: "test-data.zip"
+    destination: "test-output-zip"
+```
+
+#### **Extract TAR.GZ File**
+```yaml
+- name: Decompress TAR.GZ
+  uses: KangYoungIn/file-compression-extraction@v1
+  with:
+    action: "decompress"
+    format: "tar.gz"
+    source: "test-data.tar.gz"
+    destination: "test-output-tar-gz"
+```
+
+---
+
+## **Open Source Libraries**
+This project uses the following open-source libraries.
+
+| Library | Version | License | Purpose |
+|---------|--------|--------|---------|
+| [archiver](https://www.npmjs.com/package/archiver) | `^7.0.1` | MIT | ZIP Compression |
+| [unzipper](https://www.npmjs.com/package/unzipper) | `^0.12.3` | MIT | ZIP Extraction |
+| [tar-stream](https://www.npmjs.com/package/tar-stream) | `^3.1.3` | MIT | TAR Compression & Extraction |
+| [@actions/core](https://www.npmjs.com/package/@actions/core) | `^1.11.1` | MIT | GitHub Actions Integration |
