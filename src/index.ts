@@ -6,20 +6,25 @@ async function run() {
   try {
     const action = core.getInput("action");
     const format = core.getInput("format");
-    const source = core.getInput("source");
+    const source = core.getInput("source").split(",");
     const destination = core.getInput("destination");
+
+    console.log(`🔹 Action: ${action}`);
+    console.log(`📦 Format: ${format}`);
+    console.log(`📂 Source: ${source}`);
+    console.log(`🎯 Destination: ${destination}`);
 
     if (action === "compress") {
       await compress(source, destination, format);
+      console.log(`✅ Compression complete: ${destination}`);
     } else if (action === "decompress") {
-      await decompress(source, destination, format);
+      await decompress(destination, source[0], format);
+      console.log(`✅ Decompression complete: ${source[0]}`);
     } else {
-      throw new Error(`Invalid action: ${action}. Use 'compress' or 'decompress'.`);
+      core.setFailed("❌ Invalid action. Use 'compress' or 'decompress'.");
     }
-
-    core.info(`✅ ${action} operation completed successfully.`);
-  } catch (error) {
-    core.setFailed(`Action failed: ${(error as Error).message}`);
+  } catch (error: any) {
+    core.setFailed(`❌ Error: ${error.message}`);
   }
 }
 
